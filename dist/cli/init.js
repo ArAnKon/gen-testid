@@ -3,9 +3,9 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 import * as readline from 'readline';
 export async function initCommand() {
-    console.log('🚀 Инициализация gen-testid для Vue...\n');
+    console.log('Инициализация gen-testid для Vue...\n');
     try {
-        console.log('📋 Доступные стратегии:');
+        console.log('Доступные стратегии:');
         console.log('   1. hierarchical (default) - иерархические ID (test__Component__elem-1)');
         console.log('   2. stable-uuid - стабильные UUID');
         console.log('   3. minimal - простые номера');
@@ -23,7 +23,7 @@ export async function initCommand() {
                 break;
             case '4':
                 strategy = 'semantic';
-                console.log('\n🤖 Настройка семантической генерации через Ollama:');
+                console.log('\nНастройка семантической генерации через Ollama:');
                 console.log('   Требуется Ollama');
                 console.log('   Установка: brew install ollama && ollama pull llama3.2:3b');
                 console.log('   Запуск: ollama serve\n');
@@ -31,7 +31,7 @@ export async function initCommand() {
                 semanticModel = model || 'llama3.2:3b';
                 const url = await askQuestion('URL Ollama [http://localhost:11434]: ');
                 ollamaUrl = url || 'http://localhost:11434';
-                console.log('\n💡 Совет: Запустите "ollama serve" в отдельном терминале');
+                console.log('\nСовет: Запустите "ollama serve" в отдельном терминале');
                 break;
             default:
                 strategy = 'hierarchical';
@@ -47,20 +47,20 @@ export async function initCommand() {
         };
         const configPath = path.join(process.cwd(), '.gentestidrc');
         await fs.writeFile(configPath, JSON.stringify(config, null, 2));
-        console.log(`\n✅ Конфигурация сохранена в ${configPath}`);
+        console.log(`\nКонфигурация сохранена в ${configPath}`);
         if (strategy === 'semantic') {
-            console.log('\n🤖 Семантическая генерация активирована!');
+            console.log('\nСемантическая генерация активирована!');
             console.log('   При первом запуске ID будут иерархическими,');
             console.log('   а Ollama в фоне будет генерировать умные ID.');
         }
         await updatePackageJson();
-        console.log('\n📝 Следующие шаги:');
+        console.log('\nСледующие шаги:');
         console.log('  1. Запустите Ollama: ollama serve');
         console.log('  2. Запустите "npx gen-testid inject" для простановки testid');
-        console.log('  3. Готово! 🎉\n');
+        console.log('  3. Готово!\n');
     }
     catch (error) {
-        console.error('❌ Ошибка при инициализации:', error);
+        console.error('Ошибка при инициализации:', error);
         process.exit(1);
     }
 }
@@ -75,10 +75,10 @@ async function updatePackageJson() {
             pkg.scripts['testids'] = 'gen-testid inject';
         }
         await fs.writeFile(pkgPath, JSON.stringify(pkg, null, 2));
-        console.log('✅ Скрипты добавлены в package.json');
+        console.log('Скрипты добавлены в package.json');
     }
     catch (error) {
-        console.log('⚠️  Не удалось обновить package.json');
+        console.log('Не удалось обновить package.json');
     }
 }
 function askQuestion(question) {

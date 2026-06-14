@@ -46,7 +46,7 @@ program
         }
     }
     catch (error) {
-        console.error('\n❌ Ошибка:', error);
+        console.error('\nОшибка:', error);
         process.exit(1);
     }
 });
@@ -72,7 +72,7 @@ function printResults(results, dryRun) {
     console.log(`   Файлов с изменениями: ${filesWithChanges}`);
     console.log(`   ${dryRun ? 'Будет добавлено' : 'Добавлено'} testid: ${total}`);
     if (total > 0) {
-        console.log('\n📝 Детали:');
+        console.log('\nДетали:');
         results
             .filter(r => r.injectedCount > 0)
             .slice(0, 5)
