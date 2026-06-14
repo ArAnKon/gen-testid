@@ -4,6 +4,6 @@
 // Он просто импортирует скомпилированный TypeScript код
 
 import('../dist/cli/index.js').catch(err => {
-    console.error('Ошибка запуска auto-testid:', err.message);
+    console.error('Ошибка запуска gen-testid:', err.message);
     process.exit(1);
 });

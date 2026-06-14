@@ -1,0 +1,25 @@
+{
+  "name": "gen-testid",
+  "version": "1.0.0",
+  "description": "Автоматическая простановка data-testid в Vue проектах",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "gen-testid": "./bin/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@vue/compiler-sfc": "^3.5.32",
+    "commander": "^11.1.0",
+    "fast-glob": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "typescript": "^5.2.0"
+  }
+}
